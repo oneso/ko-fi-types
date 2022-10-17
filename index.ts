@@ -1,20 +1,26 @@
-export interface KoFiRequest {
-    data: Request | DonationRequest | SubscriptionRequest | ShopOrderRequest;
+export interface WebhookRequest {
+    data: RequestData;
 }
 
-export type DonationRequest = Request & {
+export type RequestData = CommissionData | DonationData | ShopOrderData | SubscriptionData;
+
+export type CommissionData = Data & {
+    type: Type.Commission,
+}
+
+export type DonationData = Data & {
     type: Type.Donation,
     is_subscription_payment: false,
     is_first_subscription_payment: false,
 }
 
-export type SubscriptionRequest = Request & {
+export type SubscriptionData = Data & {
     type: Type.Subscription,
     is_subscription_payment: true,
     tier_name: string;
 }
 
-export type ShopOrderRequest = Request & {
+export type ShopOrderData = Data & {
     type: Type.ShopOrder,
     is_subscription_payment: false,
     shop_items: ShopItem[];
@@ -22,7 +28,7 @@ export type ShopOrderRequest = Request & {
 
 export type ShopItem = { direct_link_code: string; };
 
-export interface Request {
+export interface Data {
     message_id: string;
     timestamp: string;
     type: Type;
@@ -37,8 +43,8 @@ export interface Request {
     is_first_subscription_payment: boolean;
     kofi_transaction_id: string;
     verification_token: string;
-    shop_items: null;
-    tier_name: null;
+    shop_items: ShopItem[] | null;
+    tier_name: string | null;
 }
 
 export enum Type {
@@ -46,5 +52,4 @@ export enum Type {
     Subscription = "Subscription",
     Commission = "Commission",
     ShopOrder = "Shop Order"
-
 }
