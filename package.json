@@ -1,6 +1,6 @@
 {
-  "name": "ko-fi-types",
-  "version": "1.0.1",
+  "name": "@ko-fi/types",
+  "version": "1.0.0",
   "description": "Ko-fi Webhook Typescript types",
   "main": "index.js",
   "scripts": {
