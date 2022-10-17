@@ -53,3 +53,28 @@ export enum Type {
     Commission = "Commission",
     ShopOrder = "Shop Order"
 }
+
+export interface Config<R> {
+    endpoint: string;
+    onData: Callback<RequestData, R>;
+    onCommission: Callback<CommissionData, R>;
+    onDonation: Callback<DonationData, R>;
+    onShopOrder: Callback<ShopOrderData, R>;
+    onSubscription: Callback<SubscriptionData, R>;
+    onError: (err: any, req: R) => void;
+    verificationToken: string | false;
+}
+
+export type Callback<TData, R> = (data: TData, req: R) => void | null | undefined | Promise<void>;
+
+export const mergeConfig: <R>(config: Partial<Config<R>>) => Config<R> = (config) => ({
+    endpoint: 'webhook',
+    onData: () => null,
+    onCommission: () => null,
+    onDonation: () => null,
+    onShopOrder: () => null,
+    onSubscription: () => null,
+    onError: () => null,
+    verificationToken: false,
+    ...config,
+});
