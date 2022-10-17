@@ -1,12 +1,19 @@
 {
   "name": "ko-fi-types",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Ko-fi Webhook Typescript types",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "oneso",
+  "license": "ISC",
+  "files": [
+    "index.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneso/ko-fi-types.git"
+  }
 }
