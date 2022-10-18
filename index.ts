@@ -61,7 +61,7 @@ export interface Config<R> {
     onDonation: Callback<DonationData, R>;
     onShopOrder: Callback<ShopOrderData, R>;
     onSubscription: Callback<SubscriptionData, R>;
-    onError: (err: any, req: R) => void;
+    onError: (err: any, req: R) => void | Promise<void>;
     verificationToken: string | false;
 }
 
